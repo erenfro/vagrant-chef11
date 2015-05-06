@@ -1,0 +1,10 @@
+.DS_Store
+.chef/*
+Chef/*
+.vagrant/*
+secrets/*
+!secrets/README.md
+rpms/*
+!rpms/README.md
+Vagrantfile.old
+old/*
