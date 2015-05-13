@@ -1,10 +1,10 @@
 CHEF_CLIENT_INSTALL = <<-EOF
 #!/bin/bash
 test -d /opt/chef || {
-	echo "Installing chef-client via RPM"
-	#curl -L -s https://www.opscode.com/chef/install.sh | bash -s -- -v 11.16.4
+    echo "Installing chef-client via RPM"
+    #curl -L -s https://www.opscode.com/chef/install.sh | bash -s -- -v 11.16.4
     yum -y --disableplugin=fastestmirror install https://opscode-omnibus-packages.s3.amazonaws.com/el/6/x86_64/chef-11.16.4-1.el6.x86_64
-	#yum -y --disableplugin=fastestmirror localinstall /vagrant/rpms/chef-11.16.4-1.el6.x86_64.rpm
+    #yum -y --disableplugin=fastestmirror localinstall /vagrant/rpms/chef-11.16.4-1.el6.x86_64.rpm
 }
 EOF
 
@@ -32,11 +32,11 @@ CHEF_SERVER_INSTALL = <<-EOF
 rpm -qa | grep chef-server
 if [[ $? -ne 0 ]]
 then
-	echo "Installing Chef Server and Client via RPMs"
+    echo "Installing Chef Server and Client via RPMs"
     yum -y --disableplugin=fastestmirror install https://opscode-omnibus-packages.s3.amazonaws.com/el/6/x86_64/chef-server-11.0.8-1.el6.x86_64.rpm https://opscode-omnibus-packages.s3.amazonaws.com/el/6/x86_64/chef-11.16.4-1.el6.x86_64.rpm https://opscode-omnibus-packages.s3.amazonaws.com/el/6/x86_64/chefdk-0.4.0-1.x86_64.rpm
-	#yum -y --disableplugin=fastestmirror localinstall /vagrant/rpms/chef-server-11.0.8-1.el6.x86_64.rpm /vagrant/rpms/chef-11.16.4-1.el6.x86_64.rpm /vagrant/rpms/chefdk-0.4.0-1.x86_64.rpm
+    #yum -y --disableplugin=fastestmirror localinstall /vagrant/rpms/chef-server-11.0.8-1.el6.x86_64.rpm /vagrant/rpms/chef-11.16.4-1.el6.x86_64.rpm /vagrant/rpms/chefdk-0.4.0-1.x86_64.rpm
     chef-server-ctl reconfigure
-	rm -rf "/vagrant/.chef" >/dev/null 2>&1
+    rm -rf "/vagrant/.chef" >/dev/null 2>&1
 fi
 EOF
 
